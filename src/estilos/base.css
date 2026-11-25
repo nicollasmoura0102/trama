@@ -1,6 +1,8 @@
-/* ===== BASE ===== */
+/* ===== BASE: reset, variáveis de cor e os dois temas ===== */
 
+/* Tema claro (padrão) */
 :root {
+  color-scheme: light;
   --cor-primaria: #e4ff8f;
   --cor-primaria-hover: #f1ffc2;
   --cor-primaria-ativa: #cfe87a;
@@ -13,7 +15,7 @@
   --cor-superficie-suave: #1a1a26;
   --cor-borda: #2a2a3a;
   --cor-borda-forte: #6b6b86;
-  --cor-erro: #ff8a80;
+  --cor-erro: #b3261e;
   --cor-foco: #7cc4ff;
   --cor-painel: #e4ff8f;
   --cor-texto-painel: #0b0b12;
@@ -22,7 +24,7 @@
   --cor-banner-3: #2f3d1b;
 
   --fonte-titulo: "hoss-round-xnarrow", sans-serif;
-  --fonte: "Inter", system-ui, sans-serif;
+  --fonte: "Inter Variable", "Inter", system-ui, sans-serif;
 
 
   --esp-1: 8px;
@@ -36,6 +38,41 @@
   --raio: 30px;
   --raio-grande: 14px;
   --duracao: .5s ease;
+  --duracao-curta: 200ms ease;
+
+  /* Página de produto (fundo claro) */
+  --cor-superficie-clara: #ffffff;
+  --cor-borda-clara: #e2e2ec;
+  --cor-texto-secundario: #4a4a60;
+  --cor-estrela-vazia: #cfcfdc;
+  --cor-erro-texto: #b3261e;
+  --cor-sucesso-texto: #1f6b3a;
+  --cor-erro-fixo: #b3261e;
+  --cor-fundo-foto: #f4f4f9; /* as ilustrações têm fundo claro nos dois temas */
+}
+
+/* Tema escuro: só trocamos o valor das variáveis, os componentes continuam iguais */
+:root[data-tema="escuro"] {
+  color-scheme: dark;
+  --cor-fundo: #07070c;
+  --cor-fundo-produto: #1a1a26;
+  --cor-superficie-clara: #11111a;
+  --cor-borda-clara: #2a2a3a;
+  --cor-borda: #2a2a3a;
+  --cor-borda-forte: #8a8aa6;
+  --cor-texto-painel: #f4f4f8;
+  --cor-texto-secundario: #b9b9cf;
+  --cor-erro: #ff8a80;
+  --cor-erro-texto: #ff8a80;
+  --cor-sucesso-texto: #8ee6a8;
+  --cor-estrela-vazia: #4a4a60;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duracao: 0s;
+    --duracao-curta: 0s;
+  }
 }
 
 *,
@@ -52,7 +89,7 @@ body {
   font-family: var(--fonte);
   font-size: 16px;
   line-height: 1.5;
-  color: var(--cor-texto);
+  color: var(--cor-texto-painel);
   background-color: var(--cor-fundo);
 }
 
@@ -96,7 +133,7 @@ svg {
 }
 
 a {
-  color: var(--cor-primaria);
+  color: var(--cor-texto-painel);
 }
 
 :focus-visible {
