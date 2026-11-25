@@ -18,7 +18,11 @@ const menu = [
 export default function Cabecalho() {
   const { usuario, totalDeItens } = useLoja();
   const navegar = useNavigate();
-  const { pathname, search } = useLocation();
+  const { pathname, search, hash } = useLocation();
+
+  const favoritosAtivo = pathname === "/conta" && hash === "#favoritos";
+  const contaAtiva = (pathname === "/conta" && hash !== "#favoritos") || pathname === "/entrar";
+  const sacolaAtiva = pathname === "/sacola" || pathname === "/finalizar";
 
   function itemEstaAtivo(destino) {
     const [caminho, consulta] = destino.split("?");
@@ -53,13 +57,13 @@ export default function Cabecalho() {
         </div>
 
         <div className="topo__acoes">
-          <Link className="botao-icone" to="/conta#favoritos" aria-label="Meus favoritos">
+          <Link className={"botao-icone" + (favoritosAtivo ? " botao-icone--ativo" : "")} to="/conta#favoritos" aria-label="Meus favoritos" aria-current={favoritosAtivo ? "page" : undefined}>
             <Icone nome="coracao" />
           </Link>
-          <Link className="botao-icone" to={usuario ? "/conta" : "/entrar"} aria-label={usuario ? "Minha conta: " + usuario.nome : "Entrar na minha conta"}>
+          <Link className={"botao-icone" + (contaAtiva ? " botao-icone--ativo" : "")} to={usuario ? "/conta" : "/entrar"} aria-label={usuario ? "Minha conta: " + usuario.nome : "Entrar na minha conta"} aria-current={contaAtiva ? "page" : undefined}>
             <Icone nome="usuario" />
           </Link>
-          <Link className="botao-icone" to="/sacola" aria-label={"Minha sacola, " + totalDeItens + (totalDeItens === 1 ? " item" : " itens")}>
+          <Link className={"botao-icone" + (sacolaAtiva ? " botao-icone--ativo" : "")} to="/sacola" aria-label={"Minha sacola, " + totalDeItens + (totalDeItens === 1 ? " item" : " itens")} aria-current={sacolaAtiva ? "page" : undefined}>
             <Icone nome="carrinho" />
             <span className="sacola__contador" hidden={totalDeItens === 0}>
               {totalDeItens}

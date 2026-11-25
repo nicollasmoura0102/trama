@@ -173,7 +173,7 @@ function DetalheDoProduto({ produto }) {
             <form className="compra__formulario" onSubmit={adicionar} noValidate>
               <fieldset className="tamanhos" aria-describedby="erro-tamanho">
                 <legend className="tamanhos__legenda">Escolha o tamanho</legend>
-                <div className={"tamanhos__lista" + (erroTamanho ? " tamanhos__lista--erro" : "")}>
+                <div className="tamanhos__lista">
                   {produto.tamanhos.map((nome) => {
                     const esgotado = produto.esgotados.includes(nome);
                     return (
