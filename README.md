@@ -31,6 +31,3 @@ npm run preview
 
 React, Vite, React Router e CSS.
 
-## Repositório
-
-<https://github.com/bakastaaa/trama-checkpoint3>
